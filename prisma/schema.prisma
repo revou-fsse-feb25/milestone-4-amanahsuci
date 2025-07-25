@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -30,7 +29,7 @@ model Account {
   id             Int           @id @default(autoincrement())
   userId         Int           @map("user_id")
   accountNumber  String        @unique @map("account_number")
-  balance        Decimal       @default(0.00)
+  balance        Decimal       @db.Decimal(20, 2)
   createdAt      DateTime      @default(now()) @map("created_at")
   updatedAt      DateTime      @default(now()) @map("updated_at")
 

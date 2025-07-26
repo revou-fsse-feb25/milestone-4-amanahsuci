@@ -1,14 +1,23 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, TransactionStatus, TransactionType, AccountType, UserRole } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 async function main() {
+    const adminUser = await prisma.user.create({
+        data: {
+            name: 'Admin Revo',
+            email: 'admin@revobank.com',
+            password: 'adminsecure123',
+            role: UserRole.admin,
+        },
+    });
+
     const user1 = await prisma.user.create({
         data: {
             name: 'John Doe',
             email: 'johndoe@revobank.com',
             password: 'qwerty123',
-    },
+        },
     });
 
     const user2 = await prisma.user.create({
@@ -23,7 +32,7 @@ async function main() {
         data: {
             name: 'Ella Doe',
             email: 'elladoe@revobank.com',
-            password: 'zxcvbn1123'
+            password: 'zxcvbn1123',
         },
     });
 
@@ -31,7 +40,8 @@ async function main() {
         data: {
             userId: user1.id,
             accountNumber: '000111999222',
-            balance: 1000000000.00,
+            balance: 1000000000.0,
+            accountType: AccountType.SAVING,
         },
     });
 
@@ -39,7 +49,8 @@ async function main() {
         data: {
             userId: user2.id,
             accountNumber: '000111999333',
-            balance: 750000000.00,
+            balance: 750000000.0,
+            accountType: AccountType.SAVING,
         },
     });
 
@@ -47,7 +58,8 @@ async function main() {
         data: {
             userId: user3.id,
             accountNumber: '000111999444',
-            balance: 500000000.00,
+            balance: 500000000.0,
+            accountType: AccountType.SAVING,
         },
     });
 
@@ -55,8 +67,10 @@ async function main() {
         data: {
             fromAccountId: account1.id,
             toAccountId: account2.id,
-            amount: 200000.00,
-            type: 'transfer',
+            amount: 200000.0,
+            type: TransactionType.TRANSFER,
+            status: TransactionStatus.COMPLETED,
+            description: 'Transfer from John to Alex',
         },
     });
 
@@ -64,8 +78,10 @@ async function main() {
         data: {
             fromAccountId: account2.id,
             toAccountId: account3.id,
-            amount: 150000.00,
-            type: 'transfer',
+            amount: 150000.0,
+            type: TransactionType.TRANSFER,
+            status: TransactionStatus.COMPLETED,
+            description: 'Transfer from Alex to Ella',
         },
     });
 
@@ -73,12 +89,14 @@ async function main() {
         data: {
             fromAccountId: account3.id,
             toAccountId: account1.id,
-            amount: 100000.00,
-            type: 'transfer',
+            amount: 100000.0,
+            type: TransactionType.TRANSFER,
+            status: TransactionStatus.COMPLETED,
+            description: 'Transfer from Ella to John',
         },
     });
 
-    console.log('✅ Seeding succeded!');
+    console.log('✅ Seeding completed!');
 }
 
 main()

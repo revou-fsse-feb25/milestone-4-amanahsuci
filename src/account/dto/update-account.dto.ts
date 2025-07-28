@@ -5,7 +5,7 @@ import {
     IsString 
 } from 'class-validator';
 
-export class UpdateUserDto {
+export class UpdateAccountDto {
     @IsOptional()
     @IsString()
     accountType?: string;

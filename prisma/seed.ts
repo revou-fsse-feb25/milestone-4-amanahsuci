@@ -40,7 +40,7 @@ async function main() {
         data: {
             userId: user1.id,
             accountNumber: '000111999222',
-            balance: 1000000000.0,
+            balance: 1000000.0,
             accountType: AccountType.SAVING,
         },
     });
@@ -49,7 +49,7 @@ async function main() {
         data: {
             userId: user2.id,
             accountNumber: '000111999333',
-            balance: 750000000.0,
+            balance: 750000.0,
             accountType: AccountType.SAVING,
         },
     });
@@ -58,7 +58,7 @@ async function main() {
         data: {
             userId: user3.id,
             accountNumber: '000111999444',
-            balance: 500000000.0,
+            balance: 500000.0,
             accountType: AccountType.SAVING,
         },
     });

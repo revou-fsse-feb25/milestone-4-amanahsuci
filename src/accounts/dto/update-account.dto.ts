@@ -5,4 +5,5 @@ export class UpdateAccountDto {
     @IsOptional()
     @IsString()
     accountType?: AccountType;
+    balance?: number;
 }

@@ -14,9 +14,9 @@ import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guards';
 import { Roles } from '../auth/decorators/roles.decorator';
-import { RolesGuard } from 'src/auth/guards/roles.guards';
-import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
-import { TokenPayload } from 'src/auth/types/auth';
+import { RolesGuard } from '../auth/guards/roles.guards';
+import { CurrentUser } from '../auth/decorators/current-user.decorator';
+import { TokenPayload } from '../auth/types/auth';
 
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('account')

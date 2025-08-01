@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
-import { UsersModule } from './user/user.module';
-import { TransactionModule } from './transaction/transaction.module';
+import { UsersModule } from './users/user.module';
+import { TransactionModule } from './transactions/transaction.module';
 import { AccountModule } from './accounts/account.module';
 import { AuthModule } from './auth/auth.module';
 
